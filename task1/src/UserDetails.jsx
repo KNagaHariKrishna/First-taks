@@ -1,5 +1,6 @@
 import "./App.css"
 import { Link, Outlet } from "react-router-dom";
+import "./UserDetails.css"
 
 // const UserContext = createContext();
 function UserDetails() {
@@ -31,6 +32,20 @@ function UserDetails() {
           <Outlet />
         </div>
       </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Welcome Name</th>
+          </tr>
+          <tr>
+            <th>User Name</th>
+            <th>value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr></tr>
+        </tbody>
+      </table>
     </>
   )
 }

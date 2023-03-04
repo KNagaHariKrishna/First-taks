@@ -57,13 +57,15 @@ function Login() {
       navigate('/UserDetails');
     }
     setResponse(data);
-    console.log(response.message === "Login Successful");
+    // console.log(response.message === "Login Successful");
     console.log(JSON.stringify(response) === "Login Successful");
     console.log(response.token);
   }
 
   return (
+    <div className='body1'>
     <div className='container'>
+      <h1>Log in Form</h1>
       <label htmlFor="userName">userName</label>
       <input type="text" name="" id="userName" value={username} onChange={(e) => setUsername(e.target.value)} />
       <label htmlFor="password">password</label>
@@ -74,6 +76,7 @@ function Login() {
           <div style={{ color: "red" }}>{response.message}</div>
         ) : null}
       </div>
+    </div>
     </div>
   )
 }

@@ -105,19 +105,19 @@ app.post("/login",async (req,res)=>{
         }
     });
 })
-app.get("/userdetails", async (req, res) => {
-    const param1 = req.query.username;
-    console.log(param1);
-    try {
-        const details = await Reguser.findOne({ username: req.query.username })
-        res.send(details)
-    } catch (e) {
-        res.status(400).json({
-            status: "Failed",
-            msg: "Data Not Found",
-            message: e.message,
-        });
-    }
+// app.get("/userdetails", async (req, res) => {
+//     const param1 = req.query.username;
+//     console.log(param1);
+//     try {
+//         const details = await Reguser.findOne({ username: req.query.username })
+//         res.send(details)
+//     } catch (e) {
+//         res.status(400).json({
+//             status: "Failed",
+//             msg: "Data Not Found",
+//             message: e.message,
+//         });
+//     }
 
-})
+// })
 app.listen(5000, () => { console.log("serveris started at 5000 port"); })
