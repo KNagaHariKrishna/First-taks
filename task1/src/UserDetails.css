@@ -2,6 +2,40 @@ table{
     border-collapse: collapse;
     width: 100%;
 }
-table tr th{
-    border: 1px solid black;
+table tr{
+    /* border: 1px solid rgb(17, 32, 232); */
+    box-shadow: 2px 1.2px 5px black;
+}
+.name{
+    margin-top: 10px;
+}
+/* tbody td{
+    box-shadow: 2px 1px 5px;
+} */
+table tr:hover {
+    background-color: #ddd;
+}
+tr:nth-child(odd) {
+    background-color: #faf7f7;
+}
+.heading{
+    padding: 15px 0px;
+    background-color: antiquewhite;
+    text-align: center;
+}
+th{
+    padding: 10px;
+    text-align: left;
+    font-weight: bolder;
+}
+td{
+    text-align: left;
+    padding-left: 20px;
+    padding: 10px;
+}
+table{
+    color: rgb(112, 68, 68);
+}
+.bold{
+    font-weight: 550;
 }

@@ -15,7 +15,7 @@
     justify-content: center;
     align-items: center;
     padding: 50px 50px;
-    background-color: rgb(191, 185, 194);
+    background-color: rgba(151, 149, 153, 0.128);
     margin-left: auto;
     margin-right: auto;
     border-radius: 10px;
@@ -35,13 +35,18 @@ input:focus{
 }
 .regbtn{
         padding: 10px 15px;
-        background-color: rgb(20, 67, 220);
+        background-color: #e4dfdf;
         border: none;
         border-radius: 3px;
-        color: white;
         font-size: larger;
         font-weight: bolder;
         width: 100%;
+        margin-top: 8px;
+}
+.regbtn:hover{
+    background-color: rgb(20, 67, 220);
+    color: wheat;
+    box-shadow: 2px 2px 5px black;
 }
 .btnlogin{
         padding: 10px 15px;
@@ -52,4 +57,7 @@ input:focus{
             font-size: larger;
             font-weight: bolder;
             width: 100%;
+}
+.btnlogin:hover {
+    box-shadow: 2px 2px 5px black;
 }

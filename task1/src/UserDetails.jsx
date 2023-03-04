@@ -22,30 +22,47 @@ function UserDetails() {
         </div>
       </div>
       <div className='body'>
-        mobile num:-{user?user.mobnum:null}
+        {/* mobile num:-{user?user.mobnum:null}
         <br />
-        age:- {user?user.age:null}
-        <div>
-          <Link to={"/Login"}>
-            <button className="btnlogout" onClick={logout}>Logout</button>
-          </Link>
-          <Outlet />
-        </div>
+        age:- {user?user.age:null} */}
       </div>
+      <br />
+      <br />
       <table>
         <thead>
           <tr>
-            <th>Welcome Name</th>
+            <th colspan="3" className="heading">Welcome {user ? user.username : null}</th>
           </tr>
           <tr>
-            <th>User Name</th>
+            <th>S.no</th>
+            <th>User Details</th>
             <th>value</th>
           </tr>
         </thead>
         <tbody>
-          <tr></tr>
+          <tr>
+            <td>1</td>
+            <td>UserName</td>
+            <td className="bold">{user ? user.username : null}</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Mobile Number</td>
+            <td className="bold">{user ? user.mobnum : null}</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Age</td>
+            <td className="bold">{user ? user.age : null}</td>
+          </tr>
         </tbody>
       </table>
+      <div>
+        <Link to={"/Login"}>
+          <button className="btnlogout" onClick={logout}>Logout</button>
+        </Link>
+        <Outlet />
+      </div>
     </>
   )
 }
