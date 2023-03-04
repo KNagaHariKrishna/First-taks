@@ -73,9 +73,11 @@ function Login() {
       <button className='btnlogin' onClick={handleLogin}>Login</button>
       <div id="mess">
         {response.message ? (
-          <div style={{ color: "red" }}>{response.message}</div>
+          <div style={{ color: "red",marginTop:10 }}>{response.message}</div>
         ) : null}
       </div>
+      <br />
+        Don't have an account? <a href="/">Sign up</a>
     </div>
     </div>
   )

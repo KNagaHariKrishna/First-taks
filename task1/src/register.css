@@ -35,9 +35,9 @@ input:focus{
 }
 .regbtn{
         padding: 10px 15px;
-        background-color: #e4dfdf;
+        background-color: #c1baba;
         border: none;
-        border-radius: 3px;
+        border-radius: 5px;
         font-size: larger;
         font-weight: bolder;
         width: 100%;
