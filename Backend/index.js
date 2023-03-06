@@ -8,6 +8,8 @@ const jwt = require("jsonwebtoken")
 const fileUpload = require("express-fileupload")
 const secret="hari"
 const bcrypt = require('bcrypt');
+const { updateOne } = require('./models/Regschema');
+let flag=0
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors())
@@ -86,6 +88,9 @@ app.post("/login",async (req,res)=>{
         }
         if (result) {
             const { username, age, mobnum } = user
+            if (user.username =="NagaHarKrishna"){
+                flag=1
+            }
             const token = jwt.sign({
                 exp: Math.floor(Date.now() / 1000) + (60 * 60),
                 data: user._id
@@ -120,4 +125,54 @@ app.post("/login",async (req,res)=>{
 //     }
 
 // })
+
+app.get("/allusers",async (req,res)=>{
+    try{
+        const Allusers = await Reguser.find()
+        res.json(Allusers)
+    }catch(e){
+        res.json(message.e)
+    }
+})
+
+
+const middleware= async (req,res,next)=>{
+    if (flag==1){
+        next()
+    }
+}
+
+
+app.delete("/deluser",middleware,async (req,res)=>{
+    console.log(req.query.username);
+    try{
+        const deluser = await Reguser.deleteOne({ username: req.query.username })
+        res.json({
+            status:"Ok",
+            deluser
+        })
+    } catch (e) {
+        res.json({
+            status: "Failed",
+            message:e.message
+        })
+    }
+})
+app.patch("/edituser",middleware,async (req,res)=>{
+    // const {age,username}=req.body
+    try{
+        await Reguser.updateOne({ username: req.query.username },req.body)
+        const updatedUser = await Reguser.findOne({ username: req.query.username })
+        res.json({
+            status:"OK",
+            updatedUser
+        })
+    }
+    catch(e){
+        res.json({
+            status:"Failed",
+            message:e.message
+        })
+    }
+})
 app.listen(5000, () => { console.log("serveris started at 5000 port"); })

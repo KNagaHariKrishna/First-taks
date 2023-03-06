@@ -28,6 +28,9 @@ img{
   font-size: larger;
   font-weight: bolder;
 }
+.btnlogout:hover{
+  box-shadow: 2px 2px 5px black;
+}
 table{
     font-family: Arial, Helvetica, sans-serif;
       border-collapse: collapse;

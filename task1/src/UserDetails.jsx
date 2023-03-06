@@ -1,17 +1,34 @@
 import "./App.css"
 import { Link, Outlet } from "react-router-dom";
 import "./UserDetails.css"
-
+import { useLocation } from 'react-router-dom';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 // const UserContext = createContext();
 function UserDetails() {
-
-  const logout=()=>{
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [user, setUserData] = useState(JSON.parse(location.state));
+  const logout = () => {
+    setUserData()
     localStorage.clear();
+    navigate("/Login")
   } 
 
-  const data = localStorage.getItem("user")
-  const user = JSON.parse(data)
+  // const data = localStorage.getItem("user")
+  // const user = JSON.parse(data)
   // console.log(JSON.parse(data));
+  // const userData = location.state;
+  // console.log(JSON.parse(userData));
+
+  const HandleAllUses=()=>{
+    if (user.username =="NagaHarKrishna"){
+      navigate("/GetAllusers")
+    }else{
+      navigate("/UserDetails")
+    }
+  }
+
   return (
     <>
       <div className='header'>
@@ -31,7 +48,7 @@ function UserDetails() {
       <table>
         <thead>
           <tr>
-            <th colspan="3" className="heading">Welcome {user ? user.username : null}</th>
+            <th colSpan="3" className="heading">Welcome {user ? user.username : null}</th>
           </tr>
           <tr>
             <th>S.no</th>
@@ -58,11 +75,14 @@ function UserDetails() {
         </tbody>
       </table>
       <div>
-        <Link to={"/Login"}>
+        {/* <Link to={"/Login"}> */}
           <button className="btnlogout" onClick={logout}>Logout</button>
-        </Link>
-        <Outlet />
+        {/* </Link> */}
+        {/* <Outlet /> */}
       </div>
+      <br />
+      If You Are Admin pls Click <button className='btnlogin' style={{ width: 100 }} onClick={HandleAllUses}>Here</button>
+      {/* <a href="/GetAllusers">Hear</a> */}
     </>
   )
 }

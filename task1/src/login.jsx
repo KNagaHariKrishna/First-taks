@@ -6,8 +6,10 @@ import { useState } from 'react'
 // import { createContext, useContext } from "react";
 // const UserContext = createContext();
 import { useNavigate } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 function Login() {
+  // let history = useHistory();
   const navigate = useNavigate();
   // const [userdata, setUserdata] = useState("")
   const [username, setUsername] = useState('')
@@ -52,9 +54,10 @@ function Login() {
     console.log(data);
     if (data.token) {
       localStorage.setItem("jwt", data.token)
-      localStorage.setItem("user", JSON.stringify(data.user))
+      // localStorage.setItem("user", JSON.stringify(data.user))
       // window.location.href = '/landing'
-      navigate('/UserDetails');
+      navigate('/UserDetails', { state: JSON.stringify(data.user) });
+      // history.push("/UserDetails", JSON.stringify(data.user))
     }
     setResponse(data);
     // console.log(response.message === "Login Successful");
@@ -67,9 +70,9 @@ function Login() {
     <div className='container'>
       <h1>Log in Form</h1>
       <label htmlFor="userName">userName</label>
-      <input type="text" name="" id="userName" value={username} onChange={(e) => setUsername(e.target.value)} />
+      <input type="text" name="" id="userName" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Pls Enter Reg.Username"/>
       <label htmlFor="password">password</label>
-      <input type="text" name="" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      <input type="text" name="" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password"/>
       <button className='btnlogin' onClick={handleLogin}>Login</button>
       <div id="mess">
         {response.message ? (
