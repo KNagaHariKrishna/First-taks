@@ -10,7 +10,8 @@ const secret="hari"
 const bcrypt = require('bcrypt');
 const { updateOne } = require('./models/Regschema');
 let flag=0
-
+const env=require("dotenv")
+env.config()
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors())
 app.use(fileUpload())
@@ -175,4 +176,4 @@ app.patch("/edituser",middleware,async (req,res)=>{
         })
     }
 })
-app.listen(5000, () => { console.log("serveris started at 5000 port"); })
+app.listen(process.env.PORT || 5000, () => { console.log("serveris started at 5000 port"); })

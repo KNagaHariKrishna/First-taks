@@ -39,3 +39,6 @@ table{
 .bold{
     font-weight: 550;
 }
+.selected{
+   background-color: chartreuse !important;
+}

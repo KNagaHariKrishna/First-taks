@@ -9,9 +9,11 @@ function UserDetails() {
   const navigate = useNavigate();
   const location = useLocation();
   const [user, setUserData] = useState(JSON.parse(location.state));
-  const logout = () => {
-    setUserData()
+  const logout = (e) => {
+    e.preventDefault()
+    setUserData({})
     localStorage.clear();
+    // window.location.reload()
     navigate("/Login")
   } 
 
@@ -22,7 +24,8 @@ function UserDetails() {
   // console.log(JSON.parse(userData));
 
   const HandleAllUses=()=>{
-    if (user.username =="NagaHarKrishna"){
+    const token = localStorage.getItem("jwt")
+    if (user.username =="NagaHarKrishna" && token){
       navigate("/GetAllusers")
     }else{
       navigate("/UserDetails")

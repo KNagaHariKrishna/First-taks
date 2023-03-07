@@ -5,10 +5,11 @@ import { useNavigate } from "react-router-dom";
 function EditUser() {
     const navigate = useNavigate();
     const location = useLocation();
-    const [age, setAge] = useState("")
-    const [mobnum, setMobum] = useState("")
+    const [age, setAge] = useState(location.state.age)
+    const [mobnum, setMobum] = useState(location.state.mobnum)
     const [error, seterror] = useState(false)
-    const [user, setUserData] = useState(JSON.parse(location.state));
+    const name=location.state.username
+    const [user, setUserData] = useState(name);
     console.log(user);
     const handleEdit = async () => {
         const formData = new FormData()

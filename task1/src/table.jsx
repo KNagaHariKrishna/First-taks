@@ -4,7 +4,9 @@ function Table(user,props) {
     const navigate = useNavigate()
     // console.log(user.user.age);
     const handleEdit=()=>{
-        navigate("/EditUser", { state: JSON.stringify(user.user.username) })
+
+        navigate("/EditUser", { state: user.user })
+
     }
     const handleDelete=()=>{
         navigate("/DeleteUser", { state: JSON.stringify(user.user.username) })
