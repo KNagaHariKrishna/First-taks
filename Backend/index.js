@@ -12,6 +12,7 @@ const { updateOne } = require('./models/Regschema');
 let flag=0
 const env=require("dotenv")
 let verifyToken = require("./jwtverify")
+const nodemailer = require('nodemailer');
 
 env.config()
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -49,6 +50,7 @@ app.post("/register",async (req,res)=>{
 
 //         });
 //  }
+
     bcrypt.hash(password, 10, async function (err, hash) {
         // Store hash in your password DB.
         if (err) {
@@ -63,6 +65,35 @@ app.post("/register",async (req,res)=>{
             mobnum,
             password: hash
         });
+// Gmail Sender is started
+
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'YOUR_GMAIL_ADDRESS',
+                pass: 'YOUR_GMAIL_PASSWORD'
+            }
+        });
+
+        // Create a message object
+        const mailOptions = {
+            from: 'YOUR_NAME <YOUR_GMAIL_ADDRESS>',
+            to: username,
+            subject: "Testing",
+            html: `<p>This is my first project in comany</p>`
+        };
+
+        // Send the email
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error(error);
+                res.status(500).send('Server Error');
+            } else {
+                console.log(`Email sent: ${info.response}`);
+                res.send('Email Sent');
+            }
+        });
+
         return res.status(200).json({
             status: "Success",
             message: "User successfuully registerd",
