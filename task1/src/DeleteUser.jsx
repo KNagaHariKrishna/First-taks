@@ -24,10 +24,12 @@ function DeleteUser() {
         }
     }
   return (
-    <div className='del'>
-    <h1>You Are Deleting UserName: {user}</h1>
+    <center>
+    <h1>You Are Deleting UserName: 
+      <br />
+      {user}</h1>
       <button className="btnlogout" onClick={handleDelete}>Conform</button>
-    </div>
+    </center>
   )
 }
 
