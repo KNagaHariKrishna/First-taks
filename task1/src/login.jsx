@@ -54,6 +54,7 @@ function Login() {
     console.log(data);
     if (data.token) {
       localStorage.setItem("jwt", data.token)
+      console.log(data.token);
       // localStorage.setItem("user", JSON.stringify(data.user))
       // window.location.href = '/landing'
       navigate('/UserDetails', { state: JSON.stringify(data.user) });

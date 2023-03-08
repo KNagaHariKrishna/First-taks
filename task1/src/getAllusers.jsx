@@ -7,7 +7,13 @@ function GetAllusers() {
     const tableRef = useRef(null);
 
     useEffect(()=>{
-        const resp = fetch("http://localhost:5000/allusers").then((res)=>res.json()).then((data)=>{
+        let tok = localStorage.getItem("jwt")
+        const resp = fetch("http://localhost:5000/allusers",{
+            headers: {
+            "Authorization": tok,
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }}
+        ).then((res)=>res.json()).then((data)=>{
             setusers(data)
         }).catch((err)=>{
             console.log(err);

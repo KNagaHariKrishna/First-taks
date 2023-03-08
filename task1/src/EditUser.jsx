@@ -15,13 +15,16 @@ function EditUser() {
         const formData = new FormData()
         formData.append("age", age)
         formData.append("mobnum", mobnum)
+        
+        let tok = localStorage.getItem("jwt")
 
         const resp = await fetch(`http://localhost:5000/edituser?username=${user}`, {
             method: 'PATCH',
             body: new URLSearchParams(formData).toString(),
             headers: {
+                "Authorization": tok,
                 'Content-Type': 'application/x-www-form-urlencoded'
-            },
+            }
         })
         const data = await resp.json()
         console.log(data);

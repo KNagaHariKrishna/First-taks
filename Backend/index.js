@@ -11,6 +11,8 @@ const bcrypt = require('bcrypt');
 const { updateOne } = require('./models/Regschema');
 let flag=0
 const env=require("dotenv")
+let verifyToken = require("./jwtverify")
+
 env.config()
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors())
@@ -89,8 +91,9 @@ app.post("/login",async (req,res)=>{
         }
         if (result) {
             const { username, age, mobnum } = user
-            if (user.username =="NagaHarKrishna"){
+            if (username =="NagaHarKrishna"){
                 flag=1
+                console.log("f");
             }
             const token = jwt.sign({
                 exp: Math.floor(Date.now() / 1000) + (60 * 60),
@@ -144,7 +147,7 @@ const middleware= async (req,res,next)=>{
 }
 
 
-app.delete("/deluser",middleware,async (req,res)=>{
+app.delete("/deluser", verifyToken,middleware, async (req,res)=>{
     console.log(req.query.username);
     try{
         const deluser = await Reguser.deleteOne({ username: req.query.username })
@@ -159,7 +162,7 @@ app.delete("/deluser",middleware,async (req,res)=>{
         })
     }
 })
-app.patch("/edituser",middleware,async (req,res)=>{
+app.patch("/edituser", verifyToken, middleware, async (req,res)=>{
     // const {age,username}=req.body
     try{
         await Reguser.updateOne({ username: req.query.username },req.body)

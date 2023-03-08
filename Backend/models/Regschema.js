@@ -3,7 +3,7 @@ const schema=mongoose.Schema
 const mySchema = new schema({
     username: { type: String, unique:true},
     age: { type: Number},
-    mobnum: { type: Number, unique: true },
+    mobnum: { type: Number},
     password: {
         type: String, 
         minLength: 6,
